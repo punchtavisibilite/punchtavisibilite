@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Secret Santa de Noël</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Nunito:wght@400;600;800&display=swap">
+<style>
+:root {
+  --sapin: #0f2a1f; --sapin-2: #163a2b; --carte: #fbf6ee; --encre: #2a1d18; --encre-douce: #6b5a50;
+  --houx: #b3202f; --houx-fonce: #8c1824; --or: #e3b04b; --vert-ok: #2f7a4f;
+  --display: "Mountains of Christmas", "Comic Sans MS", cursive;
+  --body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { background: var(--sapin); }
+body { margin: 0; background: radial-gradient(ellipse at top, var(--sapin-2), var(--sapin) 70%); background-color: var(--sapin);
+  color: var(--carte); font-family: var(--body); font-size: 16px; line-height: 1.5; min-height: 100vh; padding: 0 16px 48px; overflow-x: hidden; }
+#neige { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.page { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+[hidden] { display: none !important; }
+
+.guirlande { position: relative; height: 54px; margin: 0 -16px; overflow: hidden; }
+.guirlande svg { position: absolute; inset: 0; width: 100%; height: 40px; }
+.ampoules { position: absolute; inset: 0; display: flex; justify-content: space-around; padding: 0 10px; }
+.ampoule { width: 12px; height: 18px; border-radius: 50% 50% 45% 45%; margin-top: 18px; position: relative; animation: brille 2.4s infinite ease-in-out; }
+.ampoule::before { content: ""; position: absolute; top: -5px; left: 3px; width: 6px; height: 6px; background: #3c3c3c; border-radius: 2px; }
+.ampoule:nth-child(4n+1) { background: #ff4d5e; color: #ff4d5e; }
+.ampoule:nth-child(4n+2) { background: #ffd34d; color: #ffd34d; animation-delay: .6s; }
+.ampoule:nth-child(4n+3) { background: #4dd38a; color: #4dd38a; animation-delay: 1.2s; }
+.ampoule:nth-child(4n+4) { background: #5db7ff; color: #5db7ff; animation-delay: 1.8s; }
+.ampoule:nth-child(odd) { margin-top: 24px; }
+@keyframes brille { 0%,100% { box-shadow: 0 0 14px 3px currentColor; opacity: 1; } 50% { box-shadow: 0 0 3px 0 currentColor; opacity: .55; } }
+
+header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+h1 { font-family: var(--display); font-size: clamp(2.6rem, 10vw, 4rem); line-height: 1; margin: 6px 0 0; text-shadow: 0 3px 0 var(--houx-fonce); }
+.sous-titre { margin: 0; color: #d9e6dc; max-width: 44ch; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 8px; }
+.badge { background: rgba(255,255,255,.08); border: 1px solid rgba(227,176,75,.5); color: var(--or); border-radius: 999px; padding: 4px 14px; font-weight: 800; font-size: .9rem; }
+
+.carte { background: var(--carte); color: var(--encre); border-radius: 18px; padding: 22px; box-shadow: 0 12px 30px rgba(0,0,0,.35); position: relative; }
+.carte::after { content: ""; position: absolute; inset: 7px; border: 2px dashed rgba(179,32,47,.25); border-radius: 13px; pointer-events: none; }
+.carte > * { position: relative; z-index: 1; }
+.carte h2 { font-family: var(--display); font-size: 1.9rem; margin: 0 0 4px; color: var(--houx); line-height: 1.1; }
+.aide { margin: 0 0 16px; color: var(--encre-douce); font-size: .95rem; }
+
+form { display: flex; flex-direction: column; gap: 12px; }
+.champ { display: flex; flex-direction: column; gap: 4px; }
+label { font-weight: 800; font-size: .85rem; }
+input, textarea { font: inherit; color: var(--encre); background: #fff; border: 2px solid #e4d9ca; border-radius: 10px; padding: 10px 12px; width: 100%; }
+textarea { resize: vertical; min-height: 70px; }
+input:focus, textarea:focus { outline: none; border-color: var(--houx); box-shadow: 0 0 0 3px rgba(179,32,47,.15); }
+button { font: inherit; cursor: pointer; border: 0; border-radius: 999px; font-weight: 800; padding: 12px 22px; }
+button:focus-visible { outline: 3px solid var(--or); outline-offset: 2px; }
+button:disabled { opacity: .5; cursor: wait; }
+.btn-rouge { background: linear-gradient(180deg, #d22c3c, var(--houx-fonce)); color: #fff; box-shadow: 0 5px 0 #5e0f18; align-self: center; font-size: 1.1rem; }
+.btn-rouge:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 2px 0 #5e0f18; }
+.btn-lien { background: transparent; color: #c9d8cd; text-decoration: underline; font-weight: 600; padding: 6px; }
+.carte .btn-lien { color: var(--encre-douce); }
+
+.etat { font-weight: 600; margin: 0; }
+.ok { color: var(--vert-ok); }
+.erreur { color: var(--houx); }
+.merci { text-align: center; }
+.merci .gros { font-size: 3rem; display: block; }
+
+.boules { display: flex; flex-wrap: wrap; gap: 8px; }
+.boules span { background: #fff; border: 1px solid #eadfcf; border-radius: 999px; padding: 4px 12px 4px 6px; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+.boules i { width: 20px; height: 20px; border-radius: 50%; display: inline-block; }
+
+.orga { display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center; }
+.orga .ligne { display: flex; gap: 8px; width: 100%; max-width: 360px; }
+.orga .ligne button { padding: 10px 16px; box-shadow: none; font-size: 1rem; }
+.pied { text-align: center; color: #c9d8cd; font-size: .85rem; }
+@media (prefers-reduced-motion: reduce) { .ampoule { animation: none; } #neige { display: none; } }
+</style>
+</head>
+<body>
+<canvas id="neige" aria-hidden="true"></canvas>
+<div class="page">
+  <div class="guirlande" aria-hidden="true">
+    <svg viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M0,10 Q12.5,34 25,14 T50,14 T75,14 T100,10" fill="none" stroke="#2c4a3b" stroke-width="0.8"/></svg>
+    <div class="ampoules" id="ampoules"></div>
+  </div>
+
+  <header>
+    <h1>Secret Santa</h1>
+    <p class="sous-titre">Inscris-toi avec ton prénom, ton email et le cadeau qui te ferait plaisir. Le jour du tirage, tu recevras par email le nom de la personne à gâter.</p>
+    <div class="badges"><span class="badge">🎄 Noël 2026</span><span class="badge">💶 Budget 30 € max</span></div>
+  </header>
+
+  <section class="carte" id="bloc-form">
+    <h2>Je participe</h2>
+    <p class="aide">L'idée de cadeau, c'est ce que <strong>toi</strong> tu aimerais recevoir. Tu peux te réinscrire avec le même email pour la modifier.</p>
+    <form id="form">
+      <div class="champ"><label for="prenom">Prénom</label><input id="prenom" required maxlength="40" placeholder="Julie"></div>
+      <div class="champ"><label for="email">Email</label><input id="email" type="email" required maxlength="120" placeholder="julie@exemple.fr"></div>
+      <div class="champ"><label for="idee">Mon idée de cadeau</label><textarea id="idee" required maxlength="300" placeholder="Un livre de cuisine italienne, une bougie parfumée…"></textarea></div>
+      <p class="etat erreur" id="form-etat" hidden></p>
+      <button class="btn-rouge" type="submit" id="envoyer">Je m'inscris 🎁</button>
+    </form>
+  </section>
+
+  <section class="carte merci" id="bloc-merci" hidden>
+    <span class="gros">🎉</span>
+    <h2>C'est noté !</h2>
+    <p class="aide" style="margin:0">Surveille tes emails : tu recevras le nom de la personne à qui offrir un cadeau au moment du tirage.</p>
+  </section>
+
+  <section class="carte" id="bloc-ferme" hidden>
+    <h2>Le tirage a eu lieu 🎅</h2>
+    <p class="aide" style="margin:0">Les inscriptions sont fermées. Regarde tes emails (et tes spams) pour découvrir à qui tu offres un cadeau.</p>
+  </section>
+
+  <section class="carte">
+    <h2>Déjà inscrits</h2>
+    <p class="aide" id="compteur">Chargement…</p>
+    <div class="boules" id="prenoms"></div>
+  </section>
+
+  <section class="carte orga" id="bloc-orga" hidden>
+    <h2>Espace organisatrice</h2>
+    <div class="ligne" id="ligne-code">
+      <input id="code" type="password" placeholder="Code secret" aria-label="Code secret">
+      <button class="btn-rouge" id="entrer">Entrer</button>
+    </div>
+    <div id="panneau" hidden>
+      <p class="aide" id="orga-info" style="margin:0 0 12px"></p>
+      <button class="btn-rouge" id="tirer">🎅 Lancer le tirage et envoyer les emails</button>
+      <p class="aide" id="confirm-txt" hidden style="margin:12px 0 0">Sûre ? Chaque participant va recevoir son email tout de suite.</p>
+      <div id="confirm" hidden style="display:flex;gap:8px;justify-content:center;margin-top:8px">
+        <button class="btn-rouge" id="oui" style="font-size:1rem">Oui, envoyer</button>
+        <button class="btn-lien" id="non">Annuler</button>
+      </div>
+      <button class="btn-lien" id="rouvrir" hidden>Rouvrir les inscriptions (pour un nouveau tirage)</button>
+    </div>
+    <p class="etat" id="orga-etat" hidden></p>
+  </section>
+
+  <p class="pied">🤫 Personne ne voit qui offre à qui, pas même l'organisatrice.<br><button class="btn-lien" id="lien-orga">Espace organisatrice</button></p>
+</div>
+
+<script>
+(function () {
+  var amp = document.getElementById('ampoules');
+  var n = Math.max(10, Math.round(window.innerWidth / 48));
+  for (var i = 0; i < n; i++) { var s = document.createElement('span'); s.className = 'ampoule'; amp.appendChild(s); }
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var cv = document.getElementById('neige'), ctx = cv.getContext('2d'), fl = [];
+  function taille() {
+    cv.width = window.innerWidth; cv.height = window.innerHeight;
+    var k = Math.min(140, Math.round(cv.width * cv.height / 9000)); fl = [];
+    for (var i = 0; i < k; i++) fl.push({ x: Math.random() * cv.width, y: Math.random() * cv.height, r: 1 + Math.random() * 2.6, v: .3 + Math.random() * .9, d: Math.random() * 6.28 });
+  }
+  function anime() {
+    ctx.clearRect(0, 0, cv.width, cv.height); ctx.fillStyle = 'rgba(255,255,255,.85)';
+    fl.forEach(function (f) { f.y += f.v; f.d += .01; f.x += Math.sin(f.d) * .4; if (f.y > cv.height + 4) { f.y = -4; f.x = Math.random() * cv.width; } ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, 6.283); ctx.fill(); });
+    requestAnimationFrame(anime);
+  }
+  taille(); anime(); window.addEventListener('resize', taille);
+})();
+
+var COULEURS = ['#b3202f', '#2f7a4f', '#c58b1c', '#1f5f8b', '#7a2f6b'];
+function $(id) { return document.getElementById(id); }
+function msg(el, texte, cls) { el.textContent = texte; el.className = 'etat ' + (cls || ''); el.hidden = !texte; }
+function erreurTxt(e) { return (e && e.message ? e.message : String(e)).replace(/^Exception:\s*/, ''); }
+
+function afficherEtat(e) {
+  var box = $('prenoms'); box.textContent = '';
+  e.prenoms.forEach(function (p, i) {
+    var s = document.createElement('span'), b = document.createElement('i');
+    b.style.background = COULEURS[i % COULEURS.length]; s.appendChild(b); s.appendChild(document.createTextNode(p)); box.appendChild(s);
+  });
+  var k = e.prenoms.length;
+  $('compteur').textContent = k ? k + ' participant' + (k > 1 ? 's' : '') + ' pour l\'instant.' : 'Personne pour l\'instant. Sois le premier ou la première !';
+  var ferme = !!e.tirageLe;
+  $('bloc-ferme').hidden = !ferme;
+  if (ferme) { $('bloc-form').hidden = true; $('bloc-merci').hidden = true; }
+  else if ($('bloc-merci').hidden) $('bloc-form').hidden = false;
+}
+
+google.script.run.withSuccessHandler(afficherEtat)
+  .withFailureHandler(function () { $('compteur').textContent = 'La liste ne se charge pas. Recharge la page.'; }).etat();
+
+$('form').addEventListener('submit', function (ev) {
+  ev.preventDefault();
+  $('envoyer').disabled = true; msg($('form-etat'), '');
+  google.script.run
+    .withSuccessHandler(function (e) { $('bloc-form').hidden = true; $('bloc-merci').hidden = false; afficherEtat(e); })
+    .withFailureHandler(function (err) { msg($('form-etat'), erreurTxt(err), 'erreur'); $('envoyer').disabled = false; })
+    .inscrire($('prenom').value, $('email').value, $('idee').value);
+});
+
+// Espace organisatrice
+var code = '';
+$('lien-orga').onclick = function () { $('bloc-orga').hidden = false; $('code').focus(); $('bloc-orga').scrollIntoView({ behavior: 'smooth' }); };
+function majOrga(o) {
+  $('ligne-code').hidden = true; $('panneau').hidden = false;
+  $('orga-info').textContent = o.nb + ' participant' + (o.nb > 1 ? 's' : '') + ' inscrit' + (o.nb > 1 ? 's' : '') + '.' +
+    (o.tirageLe ? ' Tirage fait le ' + new Date(o.tirageLe).toLocaleDateString('fr-FR') + '.' : '');
+  $('tirer').hidden = !!o.tirageLe; $('tirer').disabled = o.nb < 3;
+  $('rouvrir').hidden = !o.tirageLe;
+  if (!o.tirageLe && o.nb < 3) msg($('orga-etat'), 'Il faut au moins 3 participants pour lancer le tirage.', '');
+}
+$('entrer').onclick = function () {
+  code = $('code').value; $('entrer').disabled = true;
+  google.script.run.withSuccessHandler(function (o) { msg($('orga-etat'), ''); majOrga(o); })
+    .withFailureHandler(function (err) { msg($('orga-etat'), erreurTxt(err), 'erreur'); $('entrer').disabled = false; }).espaceOrga(code);
+};
+$('tirer').onclick = function () { $('confirm-txt').hidden = false; $('confirm').hidden = false; $('tirer').hidden = true; };
+$('non').onclick = function () { $('confirm-txt').hidden = true; $('confirm').hidden = true; $('tirer').hidden = false; };
+$('oui').onclick = function () {
+  $('oui').disabled = true; msg($('orga-etat'), 'Les lutins envoient les emails…', '');
+  google.script.run
+    .withSuccessHandler(function (o) {
+      $('confirm-txt').hidden = true; $('confirm').hidden = true; $('oui').disabled = false;
+      msg($('orga-etat'), '✅ C\'est fait ! ' + o.nb + ' emails envoyés. Chacun connaît maintenant la personne à gâter.', 'ok');
+      google.script.run.withSuccessHandler(function (e) { afficherEtat(e); majOrga({ nb: e.prenoms.length, tirageLe: e.tirageLe }); }).etat();
+    })
+    .withFailureHandler(function (err) { $('oui').disabled = false; msg($('orga-etat'), erreurTxt(err), 'erreur'); })
+    .lancerTirage(code);
+};
+$('rouvrir').onclick = function () {
+  google.script.run.withSuccessHandler(function (o) { msg($('orga-etat'), 'Inscriptions rouvertes.', 'ok'); majOrga(o); google.script.run.withSuccessHandler(afficherEtat).etat(); })
+    .withFailureHandler(function (err) { msg($('orga-etat'), erreurTxt(err), 'erreur'); }).rouvrir(code);
+};
+</script>
+</body>
+</html>
