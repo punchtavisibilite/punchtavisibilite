@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Permanent+Marker&display=block" rel="stylesheet">
+<style>
+  :root{ --petrol:#1E4A5A; --petrol-deep:#15394A; --yellow:#FFDE59; --white:#FFFFFF; --ink:#111111; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#888;font-family:'Montserrat',sans-serif}
+  .frame{position:relative;overflow:hidden;margin:40px;width:1080px;height:1920px}
+  .bg-petrol{background:
+      radial-gradient(1200px 900px at 20% 10%, #24586a 0%, transparent 60%),
+      radial-gradient(900px 900px at 90% 100%, #10303d 0%, transparent 60%),
+      var(--petrol);}
+  .z{position:relative;z-index:2}
+  .abs{position:absolute}
+  .handle{position:absolute;left:0;right:0;font-weight:700;font-size:30px;letter-spacing:.08em;color:rgba(255,255,255,.75);text-align:center;z-index:3}
+  .tag{display:inline-block;background:var(--yellow);color:var(--ink);font-weight:800;padding:14px 30px;border-radius:14px}
+  .marker{font-family:'Permanent Marker',cursive}
+  .slot{border:4px dashed rgba(255,255,255,.6);border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:rgba(255,255,255,.85);font-weight:700;font-size:30px;text-align:center}
+</style>
+</head>
+<body>
+
+<!-- ============ STORY 4 : sondage ============ -->
+<div id="s4" class="frame bg-petrol">
+  <div class="z abs" style="top:280px;left:80px;right:80px;text-align:center">
+    <div class="marker" style="font-size:56px;color:var(--yellow);transform:rotate(-3deg)">Question facile…</div>
+  </div>
+  <div class="z abs" style="top:430px;left:70px;right:70px;background:var(--yellow);border-radius:36px;padding:70px 50px;text-align:center;transform:rotate(-1.5deg);box-shadow:0 20px 50px rgba(0,0,0,.25)">
+    <div style="font-weight:900;font-size:92px;line-height:1.02;color:var(--ink);text-transform:uppercase">Tes posts,<br>ils te ramènent<br>des clients&nbsp;?</div>
+  </div>
+  <div class="z abs slot" style="top:1080px;left:170px;width:740px;height:330px">
+    <div>sticker SONDAGE ici</div>
+    <div style="font-weight:800;font-size:40px;color:#fff">OUI 🙌 · PAS VRAIMENT 🙈</div>
+  </div>
+  <div class="z abs" style="top:1500px;left:120px;right:120px;text-align:center;color:#fff;font-weight:600;font-size:38px;line-height:1.35">
+    Réponds, je regarde <span style="font-weight:900;color:var(--yellow)">toutes</span> les&nbsp;réponses&nbsp;👀
+  </div>
+  <div class="handle" style="bottom:120px">@PUNCHTAVISIBILITE</div>
+</div>
+
+<!-- ============ STORY 5 : preuve Jeanne ============ -->
+<div id="s5" class="frame" style="background:var(--yellow)">
+  <div class="z abs" style="top:200px;left:80px;right:80px;text-align:center">
+    <div class="tag" style="background:var(--petrol);color:#fff;font-size:40px;transform:rotate(-2deg)">RÉSULTAT CLIENTE</div>
+    <div style="margin-top:50px;font-weight:900;font-size:240px;line-height:.9;color:var(--ink)">8</div>
+    <div style="margin-top:10px;font-weight:900;font-size:64px;line-height:1.05;color:var(--ink);text-transform:uppercase">personnes dans<br>son tunnel</div>
+    <div style="margin-top:22px;display:inline-block;background:var(--ink);color:var(--yellow);border-radius:999px;padding:16px 40px;font-weight:800;font-size:44px">en 1 seule semaine</div>
+  </div>
+  <div class="z abs slot" style="top:1000px;left:110px;width:860px;height:560px;background:var(--petrol);border-color:rgba(255,255,255,.7)">
+    <div>colle ici la capture<br>du message de Jeanne</div>
+    <div style="font-size:26px;font-weight:600;color:rgba(255,255,255,.7)">(sticker photo, recadrée sur la phrase clé)</div>
+  </div>
+  <div class="z abs" style="top:1610px;left:0;right:0;text-align:center;font-weight:700;font-size:36px;color:var(--ink)">Jeanne · entreprise familiale depuis 70 ans</div>
+  <div class="handle" style="bottom:110px;color:rgba(0,0,0,.6)">@PUNCHTAVISIBILITE</div>
+</div>
+
+</body>
+</html>
