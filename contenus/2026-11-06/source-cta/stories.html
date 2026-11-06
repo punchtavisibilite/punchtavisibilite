@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Permanent+Marker&display=block" rel="stylesheet">
+<style>
+  :root{ --petrol:#1E4A5A; --petrol-deep:#15394A; --yellow:#FFDE59; --ink:#111111; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#888;font-family:'Montserrat',sans-serif}
+  .frame{position:relative;overflow:hidden;margin:40px;width:1080px;height:1920px}
+  .bg-petrol{background:radial-gradient(1200px 900px at 20% 10%, #24586a 0%, transparent 60%),radial-gradient(900px 900px at 90% 100%, #10303d 0%, transparent 60%),var(--petrol);}
+  .abs{position:absolute;z-index:2}
+  .handle{position:absolute;left:0;right:0;font-weight:700;font-size:30px;letter-spacing:.08em;color:rgba(255,255,255,.75);text-align:center;z-index:3}
+  .tag{display:inline-block;background:var(--yellow);color:var(--ink);font-weight:800;padding:14px 30px;border-radius:14px}
+  .marker{font-family:'Permanent Marker',cursive}
+  .slot{border:4px dashed rgba(255,255,255,.6);border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:rgba(255,255,255,.85);font-weight:700;font-size:30px;text-align:center}
+</style>
+</head>
+<body>
+
+<!-- S1 : novembre vient de commencer -->
+<div id="s1" class="frame" style="background:var(--yellow)">
+  <div class="abs" style="top:330px;left:80px;right:80px;text-align:center">
+    <div class="marker" style="font-size:58px;color:var(--petrol);transform:rotate(-3deg)">Moi, je fais bouger les choses.</div>
+  </div>
+  <div class="abs" style="top:560px;left:70px;right:70px;background:var(--petrol);border-radius:40px;padding:80px 50px;text-align:center;color:#fff;transform:rotate(-1.5deg);box-shadow:0 24px 60px rgba(0,0,0,.25)">
+    <div style="font-weight:900;font-size:220px;line-height:.9;color:var(--yellow)">Et toi&nbsp;?</div>
+  </div>
+  <div class="abs" style="top:1130px;left:90px;right:90px;text-align:center;color:var(--ink)">
+    <div style="font-weight:900;font-size:76px;line-height:1.05;text-transform:uppercase">Novembre vient<br>de commencer.</div>
+    <div style="margin-top:30px;font-weight:600;font-size:42px;line-height:1.35">C'est le moment idéal<br>pour ne plus attendre.</div>
+  </div>
+  <div class="handle" style="bottom:110px;color:rgba(0,0,0,.6)">@PUNCHTAVISIBILITE</div>
+</div>
+
+<!-- S2 : ce qui te bloque -->
+<div id="s2" class="frame bg-petrol">
+  <div class="abs" style="top:300px;left:0;right:0;text-align:center">
+    <div class="tag" style="font-size:40px;transform:rotate(-2deg)">SOIS HONNÊTE 👀</div>
+  </div>
+  <div class="abs" style="top:470px;left:80px;right:80px;text-align:center;color:#fff">
+    <div style="font-weight:900;font-size:96px;line-height:1.02;text-transform:uppercase">Qu'est-ce qui<br>te <span style="color:var(--yellow)">bloque</span><br>en ce moment&nbsp;?</div>
+  </div>
+  <div class="abs slot" style="top:1000px;left:140px;width:800px;height:340px">
+    <div>sticker QUESTION ici</div>
+    <div style="font-weight:800;font-size:44px;color:var(--yellow)">« En ce moment,<br>je doute de… »</div>
+  </div>
+  <div class="abs" style="top:1450px;left:110px;right:110px;text-align:center;color:#fff;font-weight:600;font-size:38px;line-height:1.35">
+    Tes doutes ne sont pas des défauts.<br><span style="font-weight:900;color:var(--yellow)">Ce sont des indices.</span>
+  </div>
+  <div class="handle" style="bottom:120px">@PUNCHTAVISIBILITE</div>
+</div>
+
+<!-- S3 : appel à l'action -->
+<div id="s3" class="frame" style="background:var(--yellow)">
+  <svg style="position:absolute;top:0;left:0;z-index:1" width="1080" height="1140" viewBox="0 0 1080 1140" preserveAspectRatio="none"><path d="M0 0 H1080 V1040 L1040 1060 1000 1030 950 1070 900 1045 850 1080 790 1050 740 1085 690 1055 640 1090 580 1060 530 1095 470 1065 420 1100 360 1070 300 1105 250 1070 190 1100 140 1065 80 1095 40 1060 0 1085 Z" fill="#1E4A5A"/></svg>
+  <div class="abs" style="top:240px;left:80px;right:80px;text-align:center;color:#fff">
+    <div style="font-weight:900;font-size:104px;line-height:1;text-transform:uppercase">Toi aussi,<br>fais <span style="color:var(--yellow)">bouger</span><br>les choses.</div>
+    <div style="margin-top:56px" class="tag"><span style="font-size:40px">ATELIER GRATUIT · ENLÈVE LE MASQUE</span></div>
+    <div style="margin-top:46px;font-weight:600;font-size:40px;line-height:1.35;color:rgba(255,255,255,.92)">Lundi midi, on parle de tes doutes<br>et du masque qui se cache derrière.</div>
+  </div>
+  <div class="abs" style="top:1200px;left:90px;right:90px;color:var(--ink);display:flex;gap:24px;justify-content:center">
+    <div style="background:#fff;border-radius:22px;padding:26px 30px;text-align:center;width:420px"><div style="font-weight:900;font-size:60px">LUN. 9</div><div style="font-weight:700;font-size:30px">novembre · 12h</div></div>
+    <div style="background:#fff;border-radius:22px;padding:26px 30px;text-align:center;width:420px"><div style="font-weight:900;font-size:60px">LIVE 1</div><div style="font-weight:700;font-size:30px">en replay</div></div>
+  </div>
+  <div class="abs" style="top:1500px;left:0;right:0;text-align:center">
+    <div style="display:inline-block;background:var(--ink);color:#fff;border-radius:999px;padding:30px 56px;font-weight:800;font-size:46px">Écris <span style="color:var(--yellow)">NOVEMBRE</span> en DM 🥊</div>
+  </div>
+  <div class="handle" style="bottom:110px;color:rgba(0,0,0,.6)">@PUNCHTAVISIBILITE</div>
+</div>
+
+</body>
+</html>
