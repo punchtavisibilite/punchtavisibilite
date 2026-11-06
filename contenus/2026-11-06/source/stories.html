@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Permanent+Marker&display=block" rel="stylesheet">
+<style>
+  :root{ --petrol:#1E4A5A; --petrol-deep:#15394A; --yellow:#FFDE59; --white:#FFFFFF; --ink:#111111; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#888;font-family:'Montserrat',sans-serif}
+  .frame{position:relative;overflow:hidden;margin:40px;width:1080px;height:1920px}
+  .bg-petrol{background:
+      radial-gradient(1200px 900px at 20% 10%, #24586a 0%, transparent 60%),
+      radial-gradient(900px 900px at 90% 100%, #10303d 0%, transparent 60%),
+      var(--petrol);}
+  .photo{position:absolute;inset:0;background-size:cover;background-position:center}
+  .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,0) 35%,rgba(0,0,0,.55) 100%)}
+  .z{position:relative;z-index:2}
+  .abs{position:absolute}
+  .handle{position:absolute;left:0;right:0;font-weight:700;font-size:30px;letter-spacing:.08em;color:rgba(255,255,255,.8);text-align:center;z-index:3;text-shadow:0 2px 10px rgba(0,0,0,.4)}
+  .tag{display:inline-block;background:var(--yellow);color:var(--ink);font-weight:800;padding:14px 30px;border-radius:14px}
+  .marker{font-family:'Permanent Marker',cursive}
+  .card{background:var(--petrol);border-radius:36px;padding:56px 54px;color:#fff;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+  .hl{background:linear-gradient(transparent 58%, var(--yellow) 58%, var(--yellow) 92%, transparent 92%);padding:0 4px}
+  .slot{border:4px dashed rgba(255,255,255,.75);border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff;font-weight:700;font-size:30px;text-align:center}
+</style>
+</head>
+<body>
+
+<!-- ============ STORY 1 : la phrase du Journal du coach ============ -->
+<div id="s1" class="frame bg-petrol">
+  <div class="z abs" style="top:300px;left:80px;right:80px;text-align:center">
+    <div class="tag" style="font-size:36px;transform:rotate(-2deg)">7H27 · MON JOURNAL DU COACH</div>
+    <div class="marker" style="margin-top:34px;font-size:46px;color:rgba(255,255,255,.85)">m'a écrit ça ce matin…</div>
+  </div>
+  <div class="z abs" style="top:640px;left:70px;right:70px;background:#fff;border-radius:36px;padding:80px 64px;transform:rotate(-1deg);box-shadow:0 24px 60px rgba(0,0,0,.3)">
+    <div style="font-weight:900;font-size:150px;line-height:.6;color:var(--yellow)">“</div>
+    <div style="font-weight:800;font-size:66px;line-height:1.2;color:var(--ink)">Le syndrome de l'imposteur ne résiste jamais <span class="hl">aux preuves</span>.</div>
+    <div style="margin-top:34px;font-weight:900;font-size:66px;line-height:1.2;color:var(--petrol)">Seulement au silence.</div>
+  </div>
+  <div class="z abs" style="top:1460px;left:120px;right:120px;text-align:center;color:#fff;font-weight:600;font-size:40px;line-height:1.35">
+    Alors aujourd'hui,<br><span style="font-weight:900;color:var(--yellow)">je ne me tais pas.</span> 🥊
+  </div>
+  <div class="handle" style="bottom:120px">@PUNCHTAVISIBILITE</div>
+</div>
+
+<!-- ============ STORY 2 : CEO Day au café ============ -->
+<div id="s2" class="frame">
+  <div class="photo" style="background-image:url('cafe.jpg');background-position:center 40%"></div>
+  <div class="shade"></div>
+  <div class="z abs" style="top:170px;left:0;right:0;text-align:center">
+    <div class="tag" style="font-size:42px;transform:rotate(-2deg)">CEO DAY ☕</div>
+  </div>
+  <div class="z abs card" style="bottom:300px;left:70px;right:70px">
+    <div style="font-weight:900;font-size:70px;line-height:1.05;text-transform:uppercase">Aujourd'hui,<br>je bosse <span style="color:var(--yellow)">sur</span><br>ma boîte.</div>
+    <div style="margin-top:14px;font-weight:700;font-size:40px;color:rgba(255,255,255,.85)">Pas dedans.</div>
+    <div class="marker" style="margin-top:34px;font-size:48px;line-height:1.25;color:var(--yellow)">Dans un café. C'est ça aussi, l'entrepreneuriat.</div>
+  </div>
+  <div class="handle" style="bottom:120px">@PUNCHTAVISIBILITE</div>
+</div>
+
+<!-- ============ STORY 3 : agenda, ça va bouger ============ -->
+<div id="s3" class="frame">
+  <div class="photo" style="background-image:url('agenda.jpg');background-position:65% center"></div>
+  <div class="shade"></div>
+  <div class="z abs" style="top:150px;left:0;right:0;text-align:center">
+    <div class="tag" style="font-size:40px;transform:rotate(-2deg)">LA SEMAINE PROCHAINE…</div>
+  </div>
+  <div class="z abs card" style="top:880px;left:70px;right:70px">
+    <div style="font-weight:900;font-size:72px;line-height:1.05;text-transform:uppercase">Des choses<br>vont <span style="color:var(--yellow)">changer.</span></div>
+    <div style="margin-top:26px;font-weight:600;font-size:40px;line-height:1.35">Je bouge mon positionnement.<br>Et je lève des choses.</div>
+    <div class="slot" style="margin-top:40px;height:230px;border-color:rgba(255,255,255,.6)">
+      <div>sticker QUESTION ici</div>
+      <div style="font-weight:800;font-size:38px;color:var(--yellow)">« Tu me suis pour quoi, toi ? »</div>
+    </div>
+  </div>
+  <div class="handle" style="bottom:120px">@PUNCHTAVISIBILITE</div>
+</div>
+
+</body>
+</html>
